@@ -1,8 +1,9 @@
 # 서어버
-시작 코드
-start up
+시작 코드(되시나여)
 
 
 ```sh
-uvicorn main:app --reload
+flit install --deps develop --symlink
+
+python main.py
 ```
