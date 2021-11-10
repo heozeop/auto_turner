@@ -39,7 +39,7 @@ recordHtml = """
                     };
                     startBtn.disabled = true;
                     stopBtn.disabled = false; 
-                    rec.start();
+                    rec.start(100);
                 };
             
                 stopBtn.onclick = () => {
