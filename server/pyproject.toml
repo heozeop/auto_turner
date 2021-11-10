@@ -14,5 +14,6 @@ dependencies = [
   "uvicorn",
   "matlab",
   "numpy",
-  "matplotlib"
+  "matplotlib",
+  "websockets"
 ]
