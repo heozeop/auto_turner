@@ -4,8 +4,6 @@ from . import recordHtml as html
 
 app = FastAPI()
 
-
-
 @app.get("/")
 async def get():
   return HTMLResponse(html.recordHtml)

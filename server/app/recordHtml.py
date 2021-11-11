@@ -31,8 +31,11 @@ recordHtml = """
                     rec = new MediaRecorder(voiceStream, {mimeType: 'audio/webm'}); 
 
                     rec.ondataavailable = (e) => {
-                        console.log('receiving', e.data);
-                        ws.send(e.data);
+                        let blob = new Blob([e.data], {
+                            type: "audio/wav"
+                        });
+                        console.log('receiving', blob);
+                        ws.send(blob);
                     }
                     rec.onstop = async () => {
                         console.log("stoped");
