@@ -31,10 +31,11 @@ recordHtml = """
                     rec = new MediaRecorder(voiceStream, {mimeType: 'audio/webm'}); 
 
                     rec.ondataavailable = (e) => {
+                        console.log(e)
                         let blob = new Blob([e.data], {
                             type: "audio/wav"
                         });
-                        console.log('receiving', blob);
+                        console.log('send', blob);
                         ws.send(blob);
                     }
                     rec.onstop = async () => {
@@ -42,7 +43,7 @@ recordHtml = """
                     };
                     startBtn.disabled = true;
                     stopBtn.disabled = false; 
-                    rec.start(100);
+                    rec.start(1000);
                 };
             
                 stopBtn.onclick = () => {

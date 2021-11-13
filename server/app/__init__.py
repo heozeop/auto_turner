@@ -1,6 +1,10 @@
+import wave
+import soundfile as sf
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
 from . import recordHtml as html
+from . import parser
+from . import checker
 
 app = FastAPI()
 
@@ -19,11 +23,14 @@ async def websocket_endpoint(websocket: WebSocket):
 @app.websocket("/audio")
 async def websocket_audio_endpoint(websocket: WebSocket):
     await websocket.accept()
+    byteParser = parser.ByteParser()
+    toneChecker = checker.ToneChecker()
     try:
-        while True:
-            data = await websocket.receive_bytes()
-            print(f"websocket receives: {data}")
-            await websocket.send_bytes(data)
+      while True:
+        data = await websocket.receive_bytes()
+        byteParser.save_file(data)
+        byteParser.load_file(toneChecker.check_tone)
+        await websocket.send_bytes(data)
     except Exception as e:
-        print(e.message)
+        print(e)
 
