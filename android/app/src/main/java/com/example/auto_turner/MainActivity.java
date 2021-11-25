@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private PlayButton   playButton = null;
     private MediaPlayer   player = null;
 
+    private FFTClient fftClient = null;
+
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
     private String [] permissions = {Manifest.permission.RECORD_AUDIO};
@@ -95,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         recorder.start();
+
+        fftClient.sendMessage();
     }
 
     private void stopRecording() {
@@ -171,6 +175,13 @@ public class MainActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         0));
         setContentView(ll);
+
+        fftClient = new FFTClient();
+        try{
+            fftClient.connect("ws://192.168.35.100:8000/ws", 5000);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -185,5 +196,12 @@ public class MainActivity extends AppCompatActivity {
             player.release();
             player = null;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        fftClient.disconnect();
     }
 }
