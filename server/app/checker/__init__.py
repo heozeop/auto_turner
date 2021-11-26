@@ -17,11 +17,12 @@ class ToneChecker():
     if estimated_tone > 0:
       estimated_tone = np.log2(estimated_tone)
     
-    tone_index = int(np.round(estimated_tone*12))
-    octave = 4 + (tone_index + 9) // 12
-    return {tone_index, octave}
+    i = int(np.round(estimated_tone*12))
+    tone_index = i % 12
+    octave = 4 + (i + 9) // 12
+    return (tone_index, octave)
   
-  def check_tone(self, data: np.ndarray):
+  def check_tone(self, data: np.ndarray, num_of_tomes: int):
     if any(data):
       self.targetToAnalysis = np.concatenate((self.targetToAnalysis, data))
       self.targetToAnalysis = self.targetToAnalysis[len(data):]
@@ -30,6 +31,15 @@ class ToneChecker():
       for i in range(int(62/(self.freq / self.size))):
         freqs[i] = 0
       
-      maxIndex = np.argmax(freqs)
-      maxFreq = maxIndex * (self.freq / self.size)
-      return self.find_closest_tone(maxFreq)
+      if num_of_tomes > freqs.size:
+        num_of_tomes = freqs.size
+      
+      maxIndexes = np.argsort(freqs)[::-1][:num_of_tomes]
+      maxFreqs = maxIndexes * (self.freq / self.size)
+      
+      result = []
+      for maxFreq in maxFreqs:
+        result.append(self.find_closest_tone(maxFreq))
+      
+      print(result)
+      return result
