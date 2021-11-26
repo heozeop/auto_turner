@@ -23,13 +23,14 @@ async def websocket_endpoint(websocket: WebSocket):
 @app.websocket("/audio")
 async def websocket_audio_endpoint(websocket: WebSocket):
     await websocket.accept()
-    byteParser = parser.ByteParser()
+    tuneParser = parser.TuneParser()
     toneChecker = checker.ToneChecker()
     try:
       while True:
         data = await websocket.receive_bytes()
-        byteParser.save_file(data)
-        byteParser.load_file(toneChecker.check_tone)
+        parsed_data = tuneParser.parse_bytes(data)
+        estimate_result = toneChecker.check_tone(parsed_data)
+        print(estimate_result)
         await websocket.send_bytes(data)
     except Exception as e:
         print(e)
