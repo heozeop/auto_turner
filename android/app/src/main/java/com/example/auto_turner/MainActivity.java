@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer   player = null;
 
     private FFTClient fftClient = null;
+    private MicRecorder micRecorder = null;
 
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
@@ -84,26 +85,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startRecording() {
-        recorder = new MediaRecorder();
-        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        recorder.setOutputFile(fileName);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
-        try {
-            recorder.prepare();
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed");
-        }
-
-        recorder.start();
-
-        fftClient.sendMessage();
+        micRecorder.startRecord();
     }
 
     private void stopRecording() {
-        recorder.stop();
-        recorder.release();
+        micRecorder.stopRecord();
         recorder = null;
     }
 
@@ -177,11 +163,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(ll);
 
         fftClient = new FFTClient();
-        try{
-            fftClient.connect("ws://192.168.35.100:8000/ws", 5000);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        fftClient.setHost("ws://192.168.35.100:8000/audio");
+        micRecorder = new MicRecorder(fftClient);
     }
 
     @Override
@@ -201,7 +184,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        fftClient.disconnect();
     }
 }
