@@ -33,8 +33,6 @@ class ToneChecker():
         freqs[i] = 0
       
 
-      if num_of_tomes > freqs.size:
-        num_of_tomes = freqs.size
       
       avgAmplitude = np.average(freqs)
       maxIndexes = np.argwhere(freqs > avgAmplitude)
@@ -43,5 +41,10 @@ class ToneChecker():
       result = []
       for maxFreq in maxFreqs:
         result.append(self.find_closest_tone(maxFreq))
+      
+      result = list(set(result))
+
+      # if num_of_tomes > result.size:
+      #   num_of_tomes = result.size
       
       return result[:num_of_tomes]
