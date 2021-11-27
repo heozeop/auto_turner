@@ -1,7 +1,5 @@
 import numpy as np
 import json
-from app import constants
-from .. import constants 
 
 class TuneParser():
   def parse_bytes(self, data: bytes):

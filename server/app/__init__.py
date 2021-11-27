@@ -1,5 +1,3 @@
-import wave
-import soundfile as sf
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
 from . import recordHtml as html
