@@ -35,14 +35,14 @@ class ToneChecker():
 
       
       avgAmplitude = np.average(freqs)
-      maxIndexes = np.argwhere(freqs > avgAmplitude)
+      # 상위 10개 amplitude를 가진 주파수 추출
+      maxIndexes = np.argsort(freqs[np.where(freqs > avgAmplitude)])[::-1][:10]
       maxFreqs = maxIndexes * (self.freq / self.size)
       
       result = []
       for maxFreq in maxFreqs:
         result.append(self.find_closest_tone(maxFreq))
       
-      # 상위 10개 진폭의 주파수만 의미 있다고 생각
-      result = list(set(result[:10]))
+      result = list(set(result))
 
       return result
