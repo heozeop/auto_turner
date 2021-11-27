@@ -27,19 +27,21 @@ class ToneChecker():
       self.targetToAnalysis = np.concatenate((self.targetToAnalysis, data))
       self.targetToAnalysis = self.targetToAnalysis[len(data):]
       freqs = abs(fft(self.targetToAnalysis)[:len(self.targetToAnalysis)//2])
+
       
       for i in range(int(62/(self.freq / self.size))):
         freqs[i] = 0
       
+
       if num_of_tomes > freqs.size:
         num_of_tomes = freqs.size
       
-      maxIndexes = np.argsort(freqs)[::-1][:num_of_tomes]
+      avgAmplitude = np.average(freqs)
+      maxIndexes = np.argwhere(freqs > avgAmplitude)
       maxFreqs = maxIndexes * (self.freq / self.size)
       
       result = []
       for maxFreq in maxFreqs:
         result.append(self.find_closest_tone(maxFreq))
       
-      print(result)
-      return result
+      return result[:num_of_tomes]
