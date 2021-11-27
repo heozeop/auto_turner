@@ -22,7 +22,7 @@ class ToneChecker():
     octave = 4 + (i + 9) // 12
     return (tone_index, octave)
   
-  def check_tone(self, data: np.ndarray, num_of_tomes: int):
+  def check_tone(self, data: np.ndarray):
     if any(data):
       self.targetToAnalysis = np.concatenate((self.targetToAnalysis, data))
       self.targetToAnalysis = self.targetToAnalysis[len(data):]
@@ -42,9 +42,7 @@ class ToneChecker():
       for maxFreq in maxFreqs:
         result.append(self.find_closest_tone(maxFreq))
       
-      result = list(set(result))
+      # 상위 10개 진폭의 주파수만 의미 있다고 생각
+      result = list(set(result[:10]))
 
-      # if num_of_tomes > result.size:
-      #   num_of_tomes = result.size
-      
-      return result[:num_of_tomes]
+      return result
