@@ -1,4 +1,5 @@
-SAMPLE_FREQ = 48000 
+SAMPLE_FREQ = 44100
+WINDOW_SIZE = 44100
 
 CONCERT_PITCH = 440
 ALL_NOTES = ["A","A#","B","C","C#","D","D#","E","F","F#","G","G#"]
