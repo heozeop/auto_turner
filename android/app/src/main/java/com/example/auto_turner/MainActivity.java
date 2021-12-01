@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FFTClient fftClient = null;
     private MicRecorder micRecorder = null;
+    private MelodyAnalyser melodyAnalyser = null;
 
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
@@ -162,7 +163,8 @@ public class MainActivity extends AppCompatActivity {
                         0));
         setContentView(ll);
 
-        fftClient = new FFTClient();
+        melodyAnalyser = new MelodyAnalyser();
+        fftClient = new FFTClient(new SocketAdapter(melodyAnalyser));
         fftClient.setHost("ws://192.168.35.100:8000/audio");
         micRecorder = new MicRecorder(fftClient);
     }
