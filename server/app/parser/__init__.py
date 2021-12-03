@@ -14,3 +14,5 @@ class TuneParser():
           'pitch': i[1],
         })
       return json.dumps(tone_list)
+    else :
+      return []

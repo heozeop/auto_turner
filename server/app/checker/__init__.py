@@ -11,6 +11,7 @@ class ToneChecker():
     self.freq = kwargs.get('freq', constants.SAMPLE_FREQ)
     self.size = kwargs.get('size', constants.WINDOW_SIZE)
     self.targetToAnalysis = [0 for _ in range(self.size)]
+    self.threshold = 10000
 
   def find_closest_tone(self, maxFreq):
     estimated_tone = maxFreq/self.interval
@@ -32,11 +33,8 @@ class ToneChecker():
       for i in range(int(62/(self.freq / self.size))):
         freqs[i] = 0
       
-
-      
-      avgAmplitude = np.average(freqs)
       # 상위 10개 amplitude를 가진 주파수 추출
-      maxIndexes = np.argsort(freqs[np.where(freqs > avgAmplitude)])[::-1][:10]
+      maxIndexes = np.argsort(freqs[np.where(freqs > self.threshold)])[::-1][:10]
       maxFreqs = maxIndexes * (self.freq / self.size)
       
       result = []
@@ -46,3 +44,5 @@ class ToneChecker():
       result = list(set(result))
 
       return result
+    else :
+      return []
