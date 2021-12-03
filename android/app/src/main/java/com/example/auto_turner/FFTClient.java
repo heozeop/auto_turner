@@ -20,7 +20,7 @@ public class FFTClient {
     }
 
     public void connect() throws Exception {
-        this.connect(this.host, 5000);
+        this.connect(this.host, 8000);
     }
 
     public void connect(String host, int timeout) throws Exception{

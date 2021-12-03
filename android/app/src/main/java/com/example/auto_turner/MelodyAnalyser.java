@@ -13,15 +13,16 @@ public class MelodyAnalyser {
     private final Queue<JSONArray> queue = new LinkedBlockingQueue<>();
     private JSONArray lastData = new JSONArray();
 
-    public MelodyAnalyser(){
-
+    public int length(){
+        int length = queue.size();
+        queue.clear();
+        return length;
     }
 
     public void recvJson(JSONArray array){
         if(checkDiff(array)) {
             queue.add(array);
             lastData = array;
-            Log.d("MELODY", "data =" + array.toString());
         }
     }
 

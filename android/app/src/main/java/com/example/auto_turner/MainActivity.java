@@ -78,10 +78,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e(LOG_TAG, "prepare() failed");
         }
+        Log.d("JSON", "json array size : " + melodyAnalyser.length());
     }
 
     private void stopPlaying() {
-        player.release();
+        //player.release();
         player = null;
     }
 
