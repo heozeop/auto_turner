@@ -30,7 +30,7 @@ async def websocket_audio_endpoint(websocket: WebSocket):
         estimate_result = toneChecker.check_tone(parsed_data)
         json_result = tuneParser.parse_2d_list(estimate_result)
         if any(json_result):
-          await websocket.send_json(json_result)
+          await websocket.send_text(json_result)
     except Exception as e:
         print(e)
 
