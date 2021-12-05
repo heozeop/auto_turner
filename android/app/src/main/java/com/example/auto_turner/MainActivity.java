@@ -15,11 +15,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.utils.widget.MockView;
 import androidx.core.app.ActivityCompat;
 
 import android.widget.LinearLayout;
 
 import java.io.IOException;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private FFTClient fftClient = null;
     private MicRecorder micRecorder = null;
     private MelodyAnalyser melodyAnalyser = null;
+    private Comparator comparator = null;
+    private MusicSheet sheet = null;
+    private BlockingQueue<Note> playNotes = null;
 
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
@@ -70,20 +76,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startPlaying() {
-        player = new MediaPlayer();
-        try {
-            player.setDataSource(fileName);
-            player.prepare();
-            player.start();
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed");
-        }
-        Log.d("JSON", "json array size : " + melodyAnalyser.length());
+        comparator.start();
     }
 
     private void stopPlaying() {
-        //player.release();
-        player = null;
+        comparator.stop();
     }
 
     private void startRecording() {
@@ -92,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void stopRecording() {
         micRecorder.stopRecord();
-        recorder = null;
     }
 
     class RecordButton extends AppCompatButton {
@@ -164,7 +160,10 @@ public class MainActivity extends AppCompatActivity {
                         0));
         setContentView(ll);
 
-        melodyAnalyser = new MelodyAnalyser();
+        playNotes = new LinkedBlockingQueue<>();
+        sheet = new MusicSheet();
+        melodyAnalyser = new MelodyAnalyser(playNotes);
+        comparator = new Comparator(sheet, playNotes);
         fftClient = new FFTClient(new SocketAdapter(melodyAnalyser));
         fftClient.setHost("ws://192.168.35.100:8000/audio");
         micRecorder = new MicRecorder(fftClient);

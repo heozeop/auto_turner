@@ -7,17 +7,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class MelodyAnalyser {
-    private Queue<Note> queue = null;
+    private BlockingQueue<Note> queue = null;
     private JSONArray lastData = new JSONArray();
 
-    public MelodyAnalyser(Queue<Note> quere){
+    public MelodyAnalyser(BlockingQueue<Note> quere){
         this.queue = quere;
     }
 
     public void recvJson(JSONArray array) {
+        if (array.length() == 0){
+            lastData = array;
+            return;
+        }
+
         Note frame = new Note();
         try{
             for (int i =0; i < array.length(); i++) {
