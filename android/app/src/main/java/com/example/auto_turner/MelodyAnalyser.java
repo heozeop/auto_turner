@@ -30,7 +30,9 @@ public class MelodyAnalyser {
             e.printStackTrace();
         }
         lastData = array;
-        queue.add(frame);
+        if (!frame.isEmpty()) {
+            queue.add(frame);
+        }
     }
 
     private boolean isNew(int note, int pitch) throws JSONException{
