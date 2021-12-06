@@ -15,4 +15,5 @@ class TuneParser():
         })
       return json.dumps(tone_list)
     else :
-      return []
+      tone_list = []
+      return json.dumps(tone_list)

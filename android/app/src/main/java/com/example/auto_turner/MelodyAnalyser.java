@@ -4,29 +4,49 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class MelodyAnalyser {
-    private final String[] notes = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
-    private final Queue<JSONArray> queue = new LinkedBlockingQueue<>();
+    private BlockingQueue<Note> queue = null;
     private JSONArray lastData = new JSONArray();
 
-    public int length(){
-        int length = queue.size();
-        queue.clear();
-        return length;
+    public MelodyAnalyser(BlockingQueue<Note> quere){
+        this.queue = quere;
     }
 
-    public void recvJson(JSONArray array){
-        if(checkDiff(array)) {
-            queue.add(array);
+    public void recvJson(JSONArray array) {
+        if (array.length() == 0){
             lastData = array;
+            return;
+        }
+
+        Note frame = new Note();
+        try{
+            for (int i =0; i < array.length(); i++) {
+                JSONObject object = array.getJSONObject(i);
+                int note = object.getInt("note"), pitch = object.getInt("pitch");
+                if (isNew(note, pitch))
+                    frame.add(note, pitch);
+            }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        lastData = array;
+        if (!frame.isEmpty()) {
+            queue.add(frame);
         }
     }
 
-    private boolean checkDiff(JSONArray array){
-        return !array.equals(lastData);
+    private boolean isNew(int note, int pitch) throws JSONException{
+        for (int i = 0; i < lastData.length(); i++){
+            JSONObject object = lastData.getJSONObject(i);
+            if (note == object.getInt("note") && pitch == object.getInt("pitch"))
+                return false;
+        }
+        return true;
     }
 }
