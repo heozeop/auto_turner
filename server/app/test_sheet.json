@@ -1,472 +1,112 @@
 [
-[
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-]
-]
-[
-[
-{
-	"note" = 5
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 3
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 5
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 6
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 5
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 3
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 4
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 4
-}
-]
-],
-[
-[
-{
-	"note" = 10
-	"pitch" = 4
-}
-],
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 8
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 6
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 5
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 3
-	"pitch" = 6
-}
-]
-],
-[
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 5
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 3
-	"pitch" = 6
-}
-]
-],
-[
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 5
-	"pitch" = 6
-}
-]
-],
-[
-[
-{
-	"note" = 5
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 3
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 5
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 5
-	"pitch" = 6
-}
-]
-],
-[
-[
-{
-	"note" = 5
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 9
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 3
-	"pitch" = 6
-}
-],
-[
-{
-	"note" = 0
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 1
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 10
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 5
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 6
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 8
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 6
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 5
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 6
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 8
-	"pitch" = 5
-}
-],
-[
-{
-	"note" = 6
-	"pitch" = 5
-}
-]
-],
-[
-[
-{
-	"note" = 5
-	"pitch" = 5
-}
-]
-]
+	[
+		[{"note" : 10, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}]
+	],
+	[
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}]
+	],
+	[
+		[{"note" : 5, "pitch" : 6}],
+		[{"note" : 3, "pitch" : 6}],
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}]
+	],
+	[
+		[{"note" : 5, "pitch" : 5}],
+		[{"note" : 6, "pitch" : 5}],
+		[{"note" : 5, "pitch" : 5}],
+		[{"note" : 3, "pitch" : 5}],
+		[{"note" : 1, "pitch" : 4}],
+		[{"note" : 0, "pitch" : 4}]
+	],
+	[
+		[{"note" : 10, "pitch" : 4}],
+		[{"note" : 10, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}]
+	],
+	[
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}]
+	],
+	[
+		[{"note" : 8, "pitch" : 6}],
+		[{"note" : 6, "pitch" : 6}],
+		[{"note" : 5, "pitch" : 6}],
+		[{"note" : 3, "pitch" : 6}]
+	],
+	[
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 5, "pitch" : 6}],
+		[{"note" : 3, "pitch" : 6}]
+	],
+	[
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 5, "pitch" : 6}]
+	],
+	[
+		[{"note" : 5, "pitch" : 6}],
+		[{"note" : 9, "pitch" : 5}],
+		[{"note" : 9, "pitch" : 5}],
+		[{"note" : 9, "pitch" : 5}]
+	],
+	[
+		[{"note" : 9, "pitch" : 5}],
+		[{"note" : 10, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 10, "pitch" : 5}],
+		[{"note" : 1, "pitch" : 5}]
+	],
+	[
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 3, "pitch" : 6}],
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 10, "pitch" : 5}]
+	],
+	[
+		[{"note" : 5, "pitch" : 5}],
+		[{"note" : 5, "pitch" : 6}]
+	],
+	[
+		[{"note" : 5, "pitch" : 6}],
+		[{"note" : 9, "pitch" : 5}],
+		[{"note" : 9, "pitch" : 5}],
+		[{"note" : 9, "pitch" : 5}]
+	],
+	[
+		[{"note" : 9, "pitch" : 5}],
+		[{"note" : 10, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 10, "pitch" : 5}],
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 1, "pitch" : 5}]
+	],
+	[
+		[{"note" : 3, "pitch" : 6}],
+		[{"note" : 0, "pitch" : 5}],
+		[{"note" : 1, "pitch" : 5}],
+		[{"note" : 10, "pitch" : 5}]
+	],
+	[
+		[{"note" : 5, "pitch" : 5}],
+		[{"note" : 6, "pitch" : 5}],
+		[{"note" : 8, "pitch" : 5}],
+		[{"note" : 6, "pitch" : 5}]
+	],
+	[
+		[{"note" : 5, "pitch" : 5}],
+		[{"note" : 6, "pitch" : 5}],
+		[{"note" : 8, "pitch" : 5}],
+		[{"note" : 6, "pitch" : 5}]
+	],
+	[
+		[{"note" : 5, "pitch" : 5}]
+	]
 ]

@@ -48,4 +48,12 @@ public class FFTClient {
             ws.sendBinary(bytes);
         }
     }
+
+    public void loadSheet(){
+        try{
+            this.connect();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

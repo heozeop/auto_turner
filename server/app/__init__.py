@@ -15,10 +15,11 @@ filename = os.path.join(dirname, jsonFileName)
 async def get():
   return HTMLResponse(html.recordHtml)
 
-@app.get("/sheet")
-async def get():
+@app.websocket("/sheet")
+async def websocket_sheet_endpoint(websocket: WebSocket):
+  await websocket.accept()
   with open(filename) as json_file:
-    return json_file.read()
+    await websocket.send_text(json_file.read())
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):

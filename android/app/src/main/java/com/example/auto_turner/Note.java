@@ -11,6 +11,7 @@ public class Note {
     public void add(int note, int pitch){
         notes.add(note);
         pitchs.add(pitch);
+        length = notes.size();
     }
 
     public boolean isEmpty(){
