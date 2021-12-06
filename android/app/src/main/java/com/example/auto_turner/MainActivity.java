@@ -16,9 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.utils.widget.MockView;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.ActivityCompat;
 
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
@@ -90,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
     private void stopRecording() {
         micRecorder.stopRecord();
     }
-
     class RecordButton extends AppCompatButton {
         boolean mStartRecording = true;
 
@@ -112,12 +113,12 @@ public class MainActivity extends AppCompatActivity {
             setOnClickListener(clicker);
         }
     }
-
     class PlayButton extends AppCompatButton {
         boolean mStartPlaying = true;
-
+        int num = 0 ;
         OnClickListener clicker = new OnClickListener() {
             public void onClick(View v) {
+                num++;
                 onPlay(mStartPlaying);
                 if (mStartPlaying) {
                     setText("Stop playing");
@@ -134,7 +135,43 @@ public class MainActivity extends AppCompatActivity {
             setOnClickListener(clicker);
         }
     }
+    static class ScoreImageButton extends AppCompatImageButton {
+        int page = 0;
+        int maxPage = 4;
+        OnClickListener clicker = new OnClickListener() {
+            public void onClick(View v) {
+                page++;
+                switchScoreImage();
+            }
+        };
+        private void switchScoreImage()
+        {
+            switch (page % maxPage){
+                case 0:
+                    setImageResource(R.drawable.score0);
+                    setScaleType(ScaleType.FIT_XY);
+                    break;
+                case 1:
+                    setImageResource(R.drawable.score1);
+                    setScaleType(ScaleType.FIT_XY);
+                    break;
+                case 2:
+                    setImageResource(R.drawable.score2);
+                    setScaleType(ScaleType.FIT_XY);
+                    break;
+                case 3:
+                    setImageResource(R.drawable.score3);
+                    setScaleType(ScaleType.FIT_XY);
+                    break;
 
+            }
+        }
+        public ScoreImageButton(Context ctx) {
+            super(ctx);
+            switchScoreImage();
+            setOnClickListener(clicker);
+        }
+    }
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -146,18 +183,26 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
         LinearLayout ll = new LinearLayout(this);
+        ll.setVerticalScrollBarEnabled(true);
+        ll.setOrientation(LinearLayout.VERTICAL);
         recordButton = new RecordButton(this);
         ll.addView(recordButton,
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                        0));
+                        1));
         playButton = new PlayButton(this);
         ll.addView(playButton,
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                        0));
+                        1));
+        ScoreImageButton scoreImageButton = new ScoreImageButton(this);
+        ll.addView(scoreImageButton,
+                new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        10));
         setContentView(ll);
 
         playNotes = new LinkedBlockingQueue<>();
