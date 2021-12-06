@@ -30,7 +30,7 @@ class ToneChecker():
 
       # 상위 10개 amplitude를 가진 주파수 추출
       
-      if(20 * np.log(np.max(freqs)) > 80):
+      if(np.max(freqs) > 10000 and 20 * np.log10(np.max(freqs)) > 100):
         select_freqs = np.where(freqs > np.max(freqs) * 0.8)[0]
         result = []
         for frequency in select_freqs:
