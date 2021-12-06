@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
     static class ScoreImageButton extends AppCompatImageButton {
         int page = 0;
-        int maxPage = 4;
+        int maxPage = 2;
         OnClickListener clicker = new OnClickListener() {
             public void onClick(View v) {
                 page++;
@@ -155,14 +155,14 @@ public class MainActivity extends AppCompatActivity {
                     setImageResource(R.drawable.score1);
                     setScaleType(ScaleType.FIT_XY);
                     break;
-                case 2:
-                    setImageResource(R.drawable.score2);
-                    setScaleType(ScaleType.FIT_XY);
-                    break;
-                case 3:
-                    setImageResource(R.drawable.score3);
-                    setScaleType(ScaleType.FIT_XY);
-                    break;
+//                case 2:
+//                    setImageResource(R.drawable.score2);
+//                    setScaleType(ScaleType.FIT_XY);
+//                    break;
+//                case 3:
+//                    setImageResource(R.drawable.score3);
+//                    setScaleType(ScaleType.FIT_XY);
+//                    break;
 
             }
         }
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                        10));
+                        1));
         setContentView(ll);
 
         playNotes = new LinkedBlockingQueue<>();

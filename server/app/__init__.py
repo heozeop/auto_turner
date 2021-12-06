@@ -1,14 +1,24 @@
 from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
+import json
+import os
 from . import recordHtml as html
 from . import parser
 from . import checker
 
 app = FastAPI()
+dirname = os.path.dirname(__file__)
+jsonFileName = './test_sheet.json'
+filename = os.path.join(dirname, jsonFileName)
 
 @app.get("/")
 async def get():
   return HTMLResponse(html.recordHtml)
+
+@app.get("/sheet")
+async def get():
+  with open(filename) as json_file:
+    return json_file.read()
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
