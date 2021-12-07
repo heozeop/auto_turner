@@ -44,7 +44,7 @@ public class MusicSheet {
 
     }
 
-    public int getNoteCount(Note note){
+    public int getNoteCount(Note note, int index){
         return 0;
     }
 
