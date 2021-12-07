@@ -22,11 +22,21 @@ public class MinWatcher implements Rule {
         }
     }
 
-
     @Override
     public int next() {
         index=index+1;
         return index;
+    }
+
+    @Override
+    public void setBar(ArrayList<Note> nextBar) {
+        bar=nextBar;
+        isHave=isThere();
+    }
+
+    @Override
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public boolean isThere() {
@@ -36,10 +46,7 @@ public class MinWatcher implements Rule {
         return false;
     }
 
-
-    @Override
-    public void setBar(ArrayList<Note> nextBar) {
-        bar=nextBar;
-        isHave=isThere();
+    public void setCheckNote(Note note){
+        this.checkNote = note;
     }
 }

@@ -28,6 +28,17 @@ public class MaxWatcher implements Rule {
         return index;
     }
 
+    @Override
+    public void setBar(ArrayList<Note> nextBar) {
+        bar=nextBar;
+        isHave=isThere();
+    }
+
+    @Override
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     public boolean isThere() {
         for(int i=0; i<bar.size();i++) {
             return bar.get(i).getNote(0)==note.getNote(0);
@@ -35,9 +46,7 @@ public class MaxWatcher implements Rule {
         return false;
     }
 
-    @Override
-    public void setBar(ArrayList<Note> nextBar) {
-        bar=nextBar;
-        isHave=isThere();
+    public void setCheckNote(Note note){
+        this.checkNote = note;
     }
 }

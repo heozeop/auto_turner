@@ -21,4 +21,9 @@ public class AllWatcher implements Rule{
     public void setBar(ArrayList<Note> bar) {
         this.bar = bar;
     }
+
+    @Override
+    public void setIndex(int index) {
+        this.index = index;
+    }
 }
