@@ -5,10 +5,30 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MusicSheet {
     private ArrayList<ArrayList<Note>> bars = new ArrayList<>();
+    private ArrayList<Integer[]> histogram = new ArrayList<Integer[]>();
 
+    public void setHistogram(){
+        Integer[] Octave1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Integer[] Octave2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Integer[] Octave3 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Integer[] Octave4 = {0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1};
+        Integer[] Octave5 = {1, 0, 6, 5, 0, 6, 4, 8, 0, 13, 12, 0};
+        Integer[] Octave6 = {5, 0, 7, 1, 0, 1, 0, 0, 0, 0, 0, 0};
+        Integer[] Octave7 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Integer[] Octave8 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        histogram.add(Octave1);
+        histogram.add(Octave2);
+        histogram.add(Octave3);
+        histogram.add(Octave4);
+        histogram.add(Octave5);
+        histogram.add(Octave6);
+        histogram.add(Octave7);
+        histogram.add(Octave8);
+    }
     public void setSheet(JSONArray sheet){
         try{
             for (int i=0; i< sheet.length(); i++){
@@ -26,6 +46,7 @@ public class MusicSheet {
                 }
                 bars.add(bar);
             }
+            setHistogram();
         } catch (JSONException e){
             e.printStackTrace();
         }
@@ -44,12 +65,18 @@ public class MusicSheet {
 
     }
 
-    public int getNoteCount(Note note){
-        return 0;
+    public int getNoteCount(Note note, int index){
+        int notes=note.getNote(index);
+        int pitch=note.getPitch(index);
+        int noteIndex=(notes+9) % 12;
+        int count=histogram.get(pitch-1)[noteIndex];
+        return count;
     }
 
     public boolean hasOctave(int pitch){
-
-        return false;
+        if(Arrays.equals(histogram.get(pitch - 1), new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}))
+            return false;
+        else
+            return true;
     }
 }

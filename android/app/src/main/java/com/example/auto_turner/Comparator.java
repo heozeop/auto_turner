@@ -54,7 +54,7 @@ public class Comparator implements Runnable{
     private Note checkUsed(Note note){
         Note newNote = new Note();
         for(int i=0;i<note.length();i++){
-            if(sheet.getNoteCount(note) > 0);
+            if(sheet.getNoteCount(note, i) > 0);
 
         }
         return newNote;
