@@ -4,56 +4,52 @@ import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketFactory;
 
-import java.io.OutputStream;
-
 public class FFTClient {
     private WebSocket ws = null;
     private WebSocketAdapter adapter = null;
-    private String host = null;
+    private final String server = "ws://192.168.35.100:8000";
+    private String audioSocket = "/audio";
+    private String sheetSocket = "/sheet";
 
-    public FFTClient(WebSocketAdapter adapter){
-        this.adapter = adapter;
+    public FFTClient() {
     }
 
-    public void setHost(String host){
-        this.host = host;
+    public void addListener(WebSocketAdapter listener){
+        this.adapter = listener;
     }
 
-    public void connect() throws Exception {
-        this.connect(this.host, 8000);
+    public void connect2audio() {
+        try{
+            this.connect(this.server + audioSocket, 8000);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
-    public void connect(String host, int timeout) throws Exception{
+    public void connect2sheet() {
+        try{
+            this.connect(this.server + sheetSocket, 8000);
+        } catch(Exception e){
+
+        }
+    }
+
+    public void connect(String host, int timeout) throws Exception {
         WebSocketFactory factory = new WebSocketFactory().setConnectionTimeout(timeout);
         ws = factory.createSocket(host);
         ws.addListener(adapter);
         ws.connectAsynchronously();
     }
 
-    public void disconnect(){
+    public void disconnect() {
         if(ws.isOpen()){
             ws.disconnect();
             ws = null;
         }
     }
 
-    public void sendMessage(){
-        if(ws.isOpen()){
-            ws.sendText("Message from Android");
-        }
-    }
-
-    public void sendBytes(byte[] bytes){
-        if(ws.isOpen()){
+    public void sendBytes(byte[] bytes) {
+        if(ws.isOpen())
             ws.sendBinary(bytes);
-        }
-    }
-
-    public void loadSheet(){
-        try{
-            this.connect();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }

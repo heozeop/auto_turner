@@ -1,17 +1,13 @@
 package com.example.auto_turner;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class MelodyAnalyser {
-    private BlockingQueue<Note> queue = null;
+    private BlockingQueue<Note> queue;
     private JSONArray lastData = new JSONArray();
 
     public MelodyAnalyser(BlockingQueue<Note> quere){
@@ -24,27 +20,27 @@ public class MelodyAnalyser {
             return;
         }
 
-        Note frame = new Note();
+        Note note = new Note();
         try{
             for (int i =0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
-                int note = object.getInt("note"), pitch = object.getInt("pitch");
-                if (isNew(note, pitch))
-                    frame.add(note, pitch);
+                int pitch = object.getInt("pitch"), octave = object.getInt("octave");
+                if (isNew(pitch, octave))
+                    note.add(pitch, octave);
             }
         } catch (JSONException e){
             e.printStackTrace();
         }
         lastData = array;
-        if (!frame.isEmpty()) {
-            queue.add(frame);
+        if (!note.isEmpty()) {
+            queue.add(note);
         }
     }
 
-    private boolean isNew(int note, int pitch) throws JSONException{
+    private boolean isNew(int pitch, int octave) throws JSONException{
         for (int i = 0; i < lastData.length(); i++){
             JSONObject object = lastData.getJSONObject(i);
-            if (note == object.getInt("note") && pitch == object.getInt("pitch"))
+            if (pitch == object.getInt("pitch") && octave == object.getInt("octave"))
                 return false;
         }
         return true;

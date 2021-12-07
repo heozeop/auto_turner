@@ -10,8 +10,8 @@ class TuneParser():
       tone_list = []
       for i in data:
         tone_list.append({
-          'note': i[0],
-          'pitch': i[1],
+          'pitch': i[0],
+          'octave': i[1],
         })
       return json.dumps(tone_list)
     else :
