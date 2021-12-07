@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 public class SocketAdapter extends WebSocketAdapter {
-    private MelodyAnalyser analyser = null;
+    private MelodyAnalyser analyser;
 
-    public SocketAdapter(MelodyAnalyser analyser){
+    public SocketAdapter(MelodyAnalyser analyser) {
         this.analyser = analyser;
     }
 
