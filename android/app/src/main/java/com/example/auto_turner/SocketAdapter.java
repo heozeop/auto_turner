@@ -29,8 +29,6 @@ public class SocketAdapter extends WebSocketAdapter {
         }
     }
 
-
-
     @Override
     public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
         super.onConnected(websocket, headers);

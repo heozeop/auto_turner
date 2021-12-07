@@ -22,6 +22,12 @@ import androidx.core.app.ActivityCompat;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.neovisionaries.ws.client.WebSocket;
+import com.neovisionaries.ws.client.WebSocketAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -212,6 +218,22 @@ public class MainActivity extends AppCompatActivity {
         fftClient = new FFTClient(new SocketAdapter(melodyAnalyser));
         fftClient.setHost("ws://192.168.35.100:8000/audio");
         micRecorder = new MicRecorder(fftClient);
+
+        FFTClient sheetLoad = new FFTClient(new WebSocketAdapter(){
+            @Override
+            public void onTextMessage(WebSocket websocket, String text) throws Exception {
+                try{
+                    sheet.setSheet(new JSONArray(text));
+                } catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        sheetLoad.setHost("ws://192.168.35.100:8000/sheet");
+        sheetLoad.loadSheet();
+        sheetLoad.disconnect();
+        comparator.initRules();
     }
 
     @Override
