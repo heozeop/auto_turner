@@ -9,9 +9,11 @@ public class Note {
     private int length = 0;
 
     public void add(int note, int pitch){
-        notes.add(note);
-        pitchs.add(pitch);
-        length++;
+        if(!this.have(note, pitch)){
+            notes.add(note);
+            pitchs.add(pitch);
+            length++;
+        }
     }
 
     public boolean isEmpty(){
@@ -38,5 +40,12 @@ public class Note {
             result += "  ";
         }
         return result;
+    }
+
+    private boolean have(int note, int pitch){
+        for(int i=0;i<length;i++)
+            if(notes.get(i) == note && pitchs.get(i) == pitch)
+                return true;
+        return false;
     }
 }
