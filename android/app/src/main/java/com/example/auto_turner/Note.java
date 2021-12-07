@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 public class Note {
     private final static String[] Notes = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
-    private ArrayList<Integer> notes = new ArrayList<>();
-    private ArrayList<Integer> pitchs = new ArrayList<>();
+    private ArrayList<Integer[]> notes = new ArrayList<>();
     private int length = 0;
 
-    public void add(int note, int pitch){
-        if(!this.have(note, pitch)){
+    public void add(int pitch, int octave){
+        if(!isHave(pitch, octave)){
+            Integer[] note = {pitch, octave};
             notes.add(note);
-            pitchs.add(pitch);
             length++;
         }
     }
@@ -25,26 +24,23 @@ public class Note {
         return length;
     }
 
-    public int getNote(int index){
+    public Integer[] getNote(int index){
         return notes.get(index);
-    }
-    public int getPitch(int index){
-        return pitchs.get(index);
     }
 
     public String toString(){
         String result = "";
         for (int i=0;i<length;i++){
-            result += Notes[notes.get(i)];
-            result += pitchs.get(i).toString();
+            result += Notes[notes.get(i)[0]];
+            result += notes.get(i)[1];
             result += "  ";
         }
         return result;
     }
 
-    private boolean have(int note, int pitch){
-        for(int i=0;i<length;i++)
-            if(notes.get(i) == note && pitchs.get(i) == pitch)
+    private boolean isHave(int pitch, int octave){
+        for(int i=0; i<length; i++)
+            if(pitch == notes.get(i)[0] && octave == notes.get(i)[1])
                 return true;
         return false;
     }
