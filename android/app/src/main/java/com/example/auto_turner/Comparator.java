@@ -18,23 +18,11 @@ public class Comparator implements Runnable{
         this.play = play;
     }
 
-    public void initRules(){
-        Note minNote = sheet.getMinNotes();
-        MinWatcher minWatcher = new MinWatcher();
-        minWatcher.setNote(minNote);
-        minWatcher.setBar(sheet.getBar(0));
-        rules[0] = minWatcher;
-
-    }
-
     @Override
     public void run() {
         try{
             while(active){
                 Note note = play.poll(timeout, TimeUnit.MICROSECONDS);
-                note = checkOctave(note);
-                note = checkUsed(note);
-                // ~~~~ 규칙으로 확인
             }
         } catch(InterruptedException e){
             e.printStackTrace();
@@ -51,24 +39,6 @@ public class Comparator implements Runnable{
 
     public void stop(){
         this.active = false;
-    }
-
-    private Note checkOctave(Note note){
-        Note newNote = new Note();
-
-        for(int i=0;i<note.length();i++)
-            if(sheet.hasOctave(note.getPitch(i)))
-                newNote.add(note.getNote(i), note.getPitch(i));
-
-        return newNote;
-    }
-    private Note checkUsed(Note note){
-        Note newNote = new Note();
-        for(int i=0;i<note.length();i++)
-            if(sheet.getNoteCount(note, i) != 0)
-                newNote.add(note.getNote(i), note.getPitch(i));
-
-        return newNote;
     }
 
 }

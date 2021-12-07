@@ -6,22 +6,31 @@ import com.neovisionaries.ws.client.WebSocketFactory;
 
 public class FFTClient {
     private WebSocket ws = null;
-    private WebSocketAdapter adapter;
-    private String host = null;
+    private WebSocketAdapter adapter = null;
+    private final String server = "ws://192.168.35.100:8000";
+    private String audioSocket = "/audio";
+    private String sheetSocket = "/sheet";
 
-    public FFTClient(WebSocketAdapter adapter) {
-        this.adapter = adapter;
+    public FFTClient() {
     }
 
-    public void setHost(String host) {
-        this.host = host;
+    public void addListener(WebSocketAdapter listener){
+        this.adapter = listener;
     }
 
-    public void connect() {
+    public void connect2audio() {
         try{
-            this.connect(this.host, 8000);
+            this.connect(this.server + audioSocket, 8000);
         } catch(Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void connect2sheet() {
+        try{
+            this.connect(this.server + sheetSocket, 8000);
+        } catch(Exception e){
+
         }
     }
 

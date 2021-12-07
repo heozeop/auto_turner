@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
     private PlayButton   playButton = null;
     private MediaPlayer   player = null;
 
-    private FFTClient fftClient = null;
+    // Main Features
     private MicRecorder micRecorder = null;
     private MelodyAnalyser melodyAnalyser = null;
-    private Comparator comparator = null;
     private MusicSheet sheet = null;
+    private Comparator comparator = null;
     private BlockingQueue<Note> playNotes = null;
 
     // Requesting permission to RECORD_AUDIO
@@ -211,28 +211,19 @@ public class MainActivity extends AppCompatActivity {
                         1));
         setContentView(ll);
 
+
+
+        /* ----------------------------------------------------------------------------------- */
         playNotes = new LinkedBlockingQueue<>();
-        sheet = new MusicSheet();
         melodyAnalyser = new MelodyAnalyser(playNotes);
-        comparator = new Comparator(sheet, playNotes);
-        fftClient = new FFTClient(new SocketAdapter(melodyAnalyser));
-        fftClient.setHost("ws://192.168.35.100:8000/audio");
+        FFTClient fftClient = new FFTClient();
+        fftClient.addListener(new SocketAdapter(melodyAnalyser));
         micRecorder = new MicRecorder(fftClient);
 
-        FFTClient sheetLoad = new FFTClient(new WebSocketAdapter(){
-            @Override
-            public void onTextMessage(WebSocket websocket, String text) throws Exception {
-                try{
-                    sheet.setSheet(new JSONArray(text));
-                } catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        });
+        MusicSheetCreator sheetCreator = new MusicSheetCreator(new FFTClient());
+        sheet = sheetCreator.getSheet("test_sheet");
 
-        sheetLoad.setHost("ws://192.168.35.100:8000/sheet");
-        sheetLoad.loadSheet();
-        sheetLoad.disconnect();
+        comparator = new Comparator(sheet, playNotes);
         comparator.initRules();
     }
 

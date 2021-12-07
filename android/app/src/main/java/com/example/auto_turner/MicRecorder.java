@@ -39,7 +39,7 @@ public class MicRecorder implements Runnable {
         Log.e("AUDIO", "Started Recording");
 
         try{
-            fftClient.connect();
+            fftClient.connect2audio();
         } catch (Exception e){
             e.printStackTrace();
         }
