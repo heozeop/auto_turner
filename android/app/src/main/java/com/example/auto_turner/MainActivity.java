@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
         sheetLoad.setHost("ws://192.168.35.100:8000/sheet");
         sheetLoad.loadSheet();
         sheetLoad.disconnect();
+        comparator.initRules();
     }
 
     @Override

@@ -79,4 +79,16 @@ public class MusicSheet {
         else
             return true;
     }
+
+    public Note getMinNotes(){
+        Note note = new Note();
+        note.add(10, 4);
+        note.add(1, 4);
+        note.add(2, 4);
+        return note;
+    }
+
+    public ArrayList<Note> getBar(int index){
+        return bars.get(index);
+    }
 }

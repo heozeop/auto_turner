@@ -18,7 +18,7 @@ public class AllWatcher implements Rule{
     }
 
     @Override
-    public void serBar(ArrayList<Note> bar) {
+    public void setBar(ArrayList<Note> bar) {
         this.bar = bar;
     }
 }

@@ -11,10 +11,20 @@ public class Comparator implements Runnable{
     private Queue<Note> refined = new LinkedBlockingQueue<>();
     private boolean active = true;
     private long timeout = 1000;
+    private Rule[] rules = new Rule[3];
 
     public Comparator(MusicSheet sheet, BlockingQueue<Note> play){
         this.sheet = sheet;
         this.play = play;
+    }
+
+    public void initRules(){
+        Note minNote = sheet.getMinNotes();
+        MinWatcher minWatcher = new MinWatcher();
+        minWatcher.setNote(minNote);
+        minWatcher.setBar(sheet.getBar(0));
+        rules[0] = minWatcher;
+
     }
 
     @Override
@@ -22,9 +32,9 @@ public class Comparator implements Runnable{
         try{
             while(active){
                 Note note = play.poll(timeout, TimeUnit.MICROSECONDS);
-                if(note != null){
-                    System.out.println(note.toString());
-                }
+                note = checkOctave(note);
+                note = checkUsed(note);
+                // ~~~~ 규칙으로 확인
             }
         } catch(InterruptedException e){
             e.printStackTrace();
