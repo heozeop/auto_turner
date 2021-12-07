@@ -39,4 +39,17 @@ public class MusicSheet {
         }
         return string;
     }
+
+    public void sheetAnalysing(){
+
+    }
+
+    public int getNoteCount(Note note){
+        return 0;
+    }
+
+    public boolean hasOctave(int pitch){
+
+        return false;
+    }
 }

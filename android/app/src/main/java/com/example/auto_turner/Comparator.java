@@ -1,11 +1,14 @@
 package com.example.auto_turner;
 
+import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class Comparator implements Runnable{
     private MusicSheet sheet = null;
     private BlockingQueue<Note> play = null;
+    private Queue<Note> refined = new LinkedBlockingQueue<>();
     private boolean active = true;
     private long timeout = 1000;
 
@@ -39,4 +42,22 @@ public class Comparator implements Runnable{
     public void stop(){
         this.active = false;
     }
+
+    private Note checkOctave(Note note){
+        Note newNote = new Note();
+        for(int i=0;i<note.length();i++){
+            if(sheet.hasOctave(note.getPitch(i)))
+                newNote.add(note.getNote(i), note.getPitch(i));
+        }
+        return newNote;
+    }
+    private Note checkUsed(Note note){
+        Note newNote = new Note();
+        for(int i=0;i<note.length();i++){
+            if(sheet.getNoteCount(note) > 0);
+
+        }
+        return newNote;
+    }
+
 }
