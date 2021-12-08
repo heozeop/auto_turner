@@ -5,21 +5,17 @@ import java.util.ArrayList;
 public class MaxWatcher implements Rule {
     public ArrayList<Note> bar;
     public int index;
-    Note note; //연주중인 노트
-    Note checkNote; //검사하기 위한 노트
+    private int pitch; //검사용 노트
+    private int octave;
     private boolean isHave;
     @Override
     public boolean check(Note note) {
-        if(isHave) {
-            return false;
-        }
-        else {
-            for(int i=0;i<checkNote.length();i++) {
-                if(checkNote.getNote(i)==note.getNote(0))
+        if(!isHave)
+            for(int i=0; i<note.length(); i++)
+                if(note.getNote(i)[0] == pitch && note.getNote(i)[1] == octave)
                     return true;
-            }
-            return false;
-        }
+
+        return false;
     }
 
     @Override
@@ -41,12 +37,15 @@ public class MaxWatcher implements Rule {
 
     public boolean isThere() {
         for(int i=0; i<bar.size();i++) {
-            return bar.get(i).getNote(0)==note.getNote(0);
+            Note tempNote=bar.get(i);
+            if(tempNote.getNote(0)[0]==this.pitch && tempNote.getNote(0)[1]==this.octave)
+                return true;
         }
         return false;
     }
 
     public void setCheckNote(Note note){
-        this.checkNote = note;
+        this.pitch = note.getNote(0)[0];
+        this.octave = note.getNote(0)[1];
     }
 }

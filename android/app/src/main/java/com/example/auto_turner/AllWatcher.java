@@ -8,7 +8,13 @@ public class AllWatcher implements Rule{
 
     @Override
     public boolean check(Note note) {
-        return false;
+        boolean check = true;
+        for(int i=0; i<bar.size(); i++)
+            for(int j=0; j<note.length(); j++)
+                if(bar.get(i).getNote(0)[0] == note.getNote(j)[0] && bar.get(i).getNote(0)[1] == note.getNote(j)[1])
+                    return false;
+
+        return check;
     }
 
     @Override

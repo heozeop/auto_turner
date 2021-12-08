@@ -20,8 +20,12 @@ public class MusicSheet {
         return string;
     }
 
-    public int getNoteCount(Note note, int index){
-        return histogram.get(note.getNote(index)[1]-1)[(note.getNote(index)[0]+9)%12];
+    public ArrayList<Integer[]> getHistogram(){
+        return histogram;
+    }
+
+    public int getNoteCount(int pitch, int octave){
+        return histogram.get(octave - 1)[(pitch+9)%12];
     }
 
     public boolean hasOctave(int octave){
